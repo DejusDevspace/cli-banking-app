@@ -5,4 +5,3 @@ def get_user_input(prompt, input_type="string") -> str:
     if not response:
         raise ValueError("Input field must not be empty!")
     return response
-
