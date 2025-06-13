@@ -188,3 +188,5 @@ config/.gitkeep
 # Allow sample/template config files
 !config/app_config.ini.template
 !config/database_config.ini.template
+
+tests.ipynb
