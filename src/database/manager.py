@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 class DatabaseManager:
-    def __init__(self, database_path="./data/database.json"):
+    def __init__(self, database_path="src/database/data/database.json"):
         self.database_path = database_path
         self.data = None
 

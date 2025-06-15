@@ -1,7 +1,30 @@
 {
-  "001": {
-    "id": "1",
-    "name": "John Doe",
-    "email": "john.doe@example.com"
-  }
+    "users": {
+        "1d6250c4-1ab0-4df9-838b-c77338910006": {
+            "id": "1d6250c4-1ab0-4df9-838b-c77338910006",
+            "name": "user1",
+            "email": "user1@test.com",
+            "password": "user1test",
+            "created_at": "2025-06-15T21:07:11.408105",
+            "accounts": []
+        },
+        "1d9abfc1-3fcd-4840-be47-1b0c67e5d858": {
+            "id": "1d9abfc1-3fcd-4840-be47-1b0c67e5d858",
+            "name": "user2",
+            "email": "user2@testing.com",
+            "password": "user2test",
+            "created_at": "2025-06-15T21:07:44.084808",
+            "accounts": []
+        },
+        "e2981ced-4c0a-471e-b7d0-df6a6f3e38c5": {
+            "id": "e2981ced-4c0a-471e-b7d0-df6a6f3e38c5",
+            "name": "user3",
+            "email": "user3@test.com",
+            "password": "user3test",
+            "created_at": "2025-06-15T21:14:47.584891",
+            "accounts": []
+        }
+    },
+    "accounts": {},
+    "transactions": {}
 }

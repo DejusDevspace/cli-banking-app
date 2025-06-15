@@ -16,7 +16,8 @@ def main():
         print("######### FILL ALL THE DETAILS BELOW TO CREATE YOUR ACCOUNT ##########")
         register_user()
     else:
-        print("Invalid option selected. Please try again!")
+        print("Invalid option selected. Please try again!\n")
+        main()
 
 if __name__ == "__main__":
     main()

@@ -3,6 +3,8 @@ from src.models import User
 from src.services import AuthService
 from .auth_prompts import *
 
+auth = AuthService()
+
 def login_user() -> None:
     """Logs a user into the banking app if they are registered."""
     email = get_user_input(GET_EMAIL_PROMPT)
@@ -20,10 +22,13 @@ def register_user() -> None:
         email=email,
         password=password
     ).to_dict()
-
-    auth_service = AuthService()
-    auth_service.register_user(user)
-    print("User:", user)
+    is_registered, response = auth.register_user(user)
+    if is_registered:
+        # Change to display formatter later
+        print(response)
+        return
+    print(response)
+    return
 
 def create_user_password() -> str:
     while True:
