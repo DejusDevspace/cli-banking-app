@@ -1,10 +1,9 @@
 """
 Main file for the banking cli app
 """
-from models import User
-from cli import input_handler
-from cli.commands import login_user, register_user
-from prompts import *
+from src.cli import input_handler
+from src.cli.commands import login_user, register_user
+from src.prompts import *
 
 
 def main():

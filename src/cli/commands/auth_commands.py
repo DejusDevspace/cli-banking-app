@@ -1,4 +1,6 @@
 from ..utils.input_handler import get_user_input
+from src.models import User
+from src.services import AuthService
 from .auth_prompts import *
 
 def login_user() -> None:
@@ -13,13 +15,15 @@ def register_user() -> None:
     email = get_user_input(GET_EMAIL_PROMPT)
     password = create_user_password()
     # Create the user object
-    # user = User(
-    #     name=name,
-    #     email=email,
-    #     password=password
-    # )
-    print("Details:", name, email, password)
-    # print("User:", user.name)
+    user = User(
+        name=name,
+        email=email,
+        password=password
+    ).to_dict()
+
+    auth_service = AuthService()
+    auth_service.register_user(user)
+    print("User:", user)
 
 def create_user_password() -> str:
     while True:
