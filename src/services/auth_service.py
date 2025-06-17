@@ -1,4 +1,5 @@
 from ..database import DatabaseManager
+from typing import Optional, Dict
 
 class AuthService:
     def __init__(self):
@@ -7,8 +8,21 @@ class AuthService:
         # Initialize the database when service starts
         self.db.data = self.db.load_data()
 
-    def authenticate_user(self, user_id: str, password: str):
-        self.current_user = "Load user data and return..."
+    def authenticate_user(self, email: str, password: str):
+        """Authenticate user with email and password"""
+        # Load the data if it is not available
+        if not self.db.data:
+            print("Loading data...")
+            self.db.data = self.db.load_data()
+
+        # Get the user id from the data
+        users = self.db.data.get("users", {})
+        for user in users.values():
+            # Check if there is a match with email and passwords
+            if user.get("email") == email and user.get("password") == password:
+                self.current_user = user
+                return True
+        return False
 
     def register_user(self, user_data: dict) -> tuple[bool, str]:
         """Register a new user"""
@@ -42,3 +56,33 @@ class AuthService:
             # Remove user from memory if save failed
             del self.db.data["users"][user_id]
             return False, "Failed to save user to database"
+
+    def get_user_by_email(self, email: str) -> Optional[Dict]:
+        """Get user data by user email"""
+        if not self.db.data:
+            self.db.data = self.db.load_data()
+
+        users = self.db.data.get("users", {})
+        for user in users.values():
+            if user.get("email") == email:
+                return user
+        return None
+
+    def get_user_by_name(self, name: str) -> Optional[Dict]:
+        """Get user data by name"""
+        if not self.db.data:
+            self.db.data = self.db.load_data()
+
+        users = self.db.data.get("users", {})
+        for user in users.values():
+            if user.get("name") == name:
+                return user
+        return None
+
+    def logout(self):
+        """Logout current user"""
+        self.current_user = None
+
+    def is_authenticated(self) -> bool:
+        """Check if a user is currently authenticated"""
+        return self.current_user is not None

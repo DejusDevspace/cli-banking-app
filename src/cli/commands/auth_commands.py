@@ -9,7 +9,13 @@ def login_user() -> None:
     """Logs a user into the banking app if they are registered."""
     email = get_user_input(GET_EMAIL_PROMPT)
     password = get_user_input(ENTER_PASSWORD_PROMPT)
-    print("Details:", email, password)
+    # Check if the user details exist using the auth service
+    if auth.authenticate_user(email, password):
+        print("User has been logged in!")
+        return
+    print("Login failed")
+    return
+
 
 def register_user() -> None:
     """Registers a new user"""
