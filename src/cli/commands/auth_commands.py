@@ -22,13 +22,16 @@ def register_user() -> None:
     name = get_user_input(GET_NAME_PROMPT)
     email = get_user_input(GET_EMAIL_PROMPT)
     password = create_user_password()
+
     # Create the user object
     user = User(
         name=name,
         email=email,
         password=password
     ).to_dict()
+
     is_registered, response = auth.register_user(user)
+
     if is_registered:
         # Change to display formatter later
         print(response)
