@@ -8,7 +8,7 @@ class AuthService:
         # Initialize the database when service starts
         self.db.data = self.db.load_data()
 
-    def authenticate_user(self, email: str, password: str):
+    def authenticate_user(self, email: str, password: str) -> tuple[bool, str]:
         """Authenticate user with email and password"""
         # Load the data if it is not available
         if not self.db.data:
@@ -19,10 +19,12 @@ class AuthService:
         users = self.db.data.get("users", {})
         for user in users.values():
             # Check if there is a match with email and passwords
-            if user.get("email") == email and user.get("password") == password:
-                self.current_user = user
-                return True
-        return False
+            if user.get("email") == email:
+                if user.get("password") == password:
+                    self.current_user = user
+                    return True, "User has been logged in!"
+                return False, "Invalid password, please try again!"
+        return False, "User does not exist! You may create an account instead."
 
     def register_user(self, user_data: dict) -> tuple[bool, str]:
         """Register a new user"""
