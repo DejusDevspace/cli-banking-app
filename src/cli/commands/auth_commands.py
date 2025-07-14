@@ -10,10 +10,11 @@ def login_user() -> None:
     email = get_user_input(GET_EMAIL_PROMPT)
     password = get_user_input(ENTER_PASSWORD_PROMPT)
     # Check if the user details exist using the auth service
-    if auth.authenticate_user(email, password):
-        print("User has been logged in!")
+    logged_in, response = auth.authenticate_user(email, password)
+    if logged_in:
+        print(response)
         return
-    print("Login failed")
+    print(response)
     return
 
 
